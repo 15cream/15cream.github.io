@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BibTeX: 12345678@inproceedings&amp;#123;tang2018bcfinder,  title&#x3D;&amp;#123;Bcfinder: A lightweight and platform-independent tool to find third-party components in binaries&amp;#125;,  author&#x3D;&amp;#123;Tang, Wei and C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries">
+<meta property="og:url" content="http://example.com/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BibTeX: 12345678@inproceedings&amp;#123;tang2018bcfinder,  title&#x3D;&amp;#123;Bcfinder: A lightweight and platform-independent tool to find third-party components in binaries&amp;#125;,  author&#x3D;&amp;#123;Tang, Wei and C">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-13T06:20:26.000Z">
+<meta property="article:modified_time" content="2020-09-13T10:09:57.792Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-阅读-论文-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" class="article-date">
+  <time datetime="2020-09-13T06:20:26.000Z" itemprop="datePublished">2020-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BibTeX:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;tang2018bcfinder,</span><br><span class="line">  title=&#123;Bcfinder: A lightweight and platform-independent tool to find third-party components in binaries&#125;,</span><br><span class="line">  author=&#123;Tang, Wei and Chen, Du and Luo, Ping&#125;,</span><br><span class="line">  booktitle=&#123;2018 25th Asia-Pacific Software Engineering Conference (APSEC)&#125;,</span><br><span class="line">  pages=&#123;288--297&#125;,</span><br><span class="line">  year=&#123;2018&#125;,</span><br><span class="line">  organization=&#123;IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="阅读笔记"><a href="#阅读笔记" class="headerlink" title="阅读笔记"></a>阅读笔记</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><h4 id="背景和问题"><a href="#背景和问题" class="headerlink" title="背景和问题"></a>背景和问题</h4><ol>
+<li>开源盛行；</li>
+<li>CBD(component-based development)和代码重用频繁；</li>
+<li>以上背景引入了一些问题，例如license violation和security weaknesses；</li>
+<li>（原文）While code reuse detection has been extensively studied in source form, third-party components detection for software in binary form especially based on large scale database like Github has been less researched.</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>采集了22K C/C++ repos on Github；</li>
+<li><strong>Extend</strong> the code reuse detection for binaries against such a large-scale data set；</li>
+<li>设计了一个系统BCFinder，可以通过特征匹配(feature matching)自动识别二进制文件中的第三方库组建。</li>
+</ol>
+<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><ol>
+<li>在大量真实的程序二进制文件上使用BCFinder，这些binaries是跨平台的，且编译选项不同（？）；</li>
+<li>实验结果显示BCFinder是一个有效的二进制分析辅助工具；</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>（原文）BCFinder is, by far, the first lightweight, rapid and platform-independent tool to detect component reuse in binaries against a large-scale data base like Github.</p>
+<h3 id="重点内容（个人偏向）"><a href="#重点内容（个人偏向）" class="headerlink" title="重点内容（个人偏向）"></a>重点内容（个人偏向）</h3><h4 id="challenges"><a href="#challenges" class="headerlink" title="challenges"></a>challenges</h4><p>首先作者选择了feature matching作为third-party components detection的方法，且选择的feature具体为string constants。此时会遇到两个challenges。</p>
+<h5 id="Partially-built-binaries"><a href="#Partially-built-binaries" class="headerlink" title="Partially built binaries."></a>Partially built binaries.</h5><ol>
+<li>第三方组件中只有部分代码被包含到待测二进制中；</li>
+<li>导致低匹配占比（a low matching proportion），进而导致false negatives；</li>
+<li>对问题的定性：（原文）This is caused by an innate problem, for lacking of features.</li>
+<li>解决方案：（原文）To identify incomplete components, we use <strong>reserved unique strings</strong> (<em>strings appear only one time in all repos</em>) in binaries to determine the existence of a component.</li>
+</ol>
+<h5 id="String-duplication"><a href="#String-duplication" class="headerlink" title="String duplication."></a>String duplication.</h5><ol>
+<li>从binaries中提取的strings可能重复出现在不同的repos中，导致false positives；</li>
+<li>解决方案：（原文）We have taken a series of measures to <strong>deduplicate</strong> from building the database to feature matching.</li>
+</ol>
+<h4 id="Strings-Duplication-and-Deduplication"><a href="#Strings-Duplication-and-Deduplication" class="headerlink" title="Strings Duplication and Deduplication"></a>Strings Duplication and Deduplication</h4><p>作者将<em>Strings Duplication</em>分为两类：</p>
+<ol>
+<li>Internal code clones in components.  即整个模块的包含，例如有三个模块都包含了第四个模块，导致第四个模块的unique strings出现在前三个模块中。作者会尝试识别出这样的情况。</li>
+<li>Cross-repetition between components. 简单的component之间存在重复的strings？作者会忽略在不同components之间出现次数超过16次的strings。</li>
+</ol>
+<h4 id="Matching-method"><a href="#Matching-method" class="headerlink" title="Matching method"></a>Matching method</h4><ol>
+<li>对unique strings和duplicated strings区分对待。当binary与一个component的matched unique strings 和 matched duplicated strings 占比分别达到某个threshold时（会有两个thresholds），认为该component是有效的。</li>
+<li>（原文）After matching repos list is generated, we apply a post-process which deletes repos with low matching rate. From the last one in the matching list, we check one by one from back to front. If the majority of matched strings of a repo can be included in repos with higher matching rate, we think this repo is false positive as a result of strings duplication. Finally, we only show matching results with high matching ratio and high absolute matching quantity.</li>
+</ol>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>可以了解一些Third-party component detection的背景知识，例如它在software security, commercial profit, software maintenance, and copyright protection这些方面的作用；</li>
+<li>可以了解下作者对组件间相似问题的定义和解决方案。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" data-id="ckf0pqohy0000sjgu2mn66qb3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Locate callbacks in iOS apps (Helper objects)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/">Locate callbacks in iOS apps (Helper objects)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/">Locate callbacks in iOS apps (Intro)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

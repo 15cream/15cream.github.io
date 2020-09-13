@@ -64,6 +64,217 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-阅读-论文-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" class="article-date">
+  <time datetime="2020-09-13T06:20:26.000Z" itemprop="datePublished">2020-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BibTeX:</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;tang2018bcfinder,</span><br><span class="line">  title=&#123;Bcfinder: A lightweight and platform-independent tool to find third-party components in binaries&#125;,</span><br><span class="line">  author=&#123;Tang, Wei and Chen, Du and Luo, Ping&#125;,</span><br><span class="line">  booktitle=&#123;2018 25th Asia-Pacific Software Engineering Conference (APSEC)&#125;,</span><br><span class="line">  pages=&#123;288--297&#125;,</span><br><span class="line">  year=&#123;2018&#125;,</span><br><span class="line">  organization=&#123;IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="阅读笔记"><a href="#阅读笔记" class="headerlink" title="阅读笔记"></a>阅读笔记</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><h4 id="背景和问题"><a href="#背景和问题" class="headerlink" title="背景和问题"></a>背景和问题</h4><ol>
+<li>开源盛行；</li>
+<li>CBD(component-based development)和代码重用频繁；</li>
+<li>以上背景引入了一些问题，例如license violation和security weaknesses；</li>
+<li>（原文）While code reuse detection has been extensively studied in source form, third-party components detection for software in binary form especially based on large scale database like Github has been less researched.</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>采集了22K C/C++ repos on Github；</li>
+<li><strong>Extend</strong> the code reuse detection for binaries against such a large-scale data set；</li>
+<li>设计了一个系统BCFinder，可以通过特征匹配(feature matching)自动识别二进制文件中的第三方库组建。</li>
+</ol>
+<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><ol>
+<li>在大量真实的程序二进制文件上使用BCFinder，这些binaries是跨平台的，且编译选项不同（？）；</li>
+<li>实验结果显示BCFinder是一个有效的二进制分析辅助工具；</li>
+</ol>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>（原文）BCFinder is, by far, the first lightweight, rapid and platform-independent tool to detect component reuse in binaries against a large-scale data base like Github.</p>
+<h3 id="重点内容（个人偏向）"><a href="#重点内容（个人偏向）" class="headerlink" title="重点内容（个人偏向）"></a>重点内容（个人偏向）</h3><h4 id="challenges"><a href="#challenges" class="headerlink" title="challenges"></a>challenges</h4><p>首先作者选择了feature matching作为third-party components detection的方法，且选择的feature具体为string constants。此时会遇到两个challenges。</p>
+<h5 id="Partially-built-binaries"><a href="#Partially-built-binaries" class="headerlink" title="Partially built binaries."></a>Partially built binaries.</h5><ol>
+<li>第三方组件中只有部分代码被包含到待测二进制中；</li>
+<li>导致低匹配占比（a low matching proportion），进而导致false negatives；</li>
+<li>对问题的定性：（原文）This is caused by an innate problem, for lacking of features.</li>
+<li>解决方案：（原文）To identify incomplete components, we use <strong>reserved unique strings</strong> (<em>strings appear only one time in all repos</em>) in binaries to determine the existence of a component.</li>
+</ol>
+<h5 id="String-duplication"><a href="#String-duplication" class="headerlink" title="String duplication."></a>String duplication.</h5><ol>
+<li>从binaries中提取的strings可能重复出现在不同的repos中，导致false positives；</li>
+<li>解决方案：（原文）We have taken a series of measures to <strong>deduplicate</strong> from building the database to feature matching.</li>
+</ol>
+<h4 id="Strings-Duplication-and-Deduplication"><a href="#Strings-Duplication-and-Deduplication" class="headerlink" title="Strings Duplication and Deduplication"></a>Strings Duplication and Deduplication</h4><p>作者将<em>Strings Duplication</em>分为两类：</p>
+<ol>
+<li>Internal code clones in components.  即整个模块的包含，例如有三个模块都包含了第四个模块，导致第四个模块的unique strings出现在前三个模块中。作者会尝试识别出这样的情况。</li>
+<li>Cross-repetition between components. 简单的component之间存在重复的strings？作者会忽略在不同components之间出现次数超过16次的strings。</li>
+</ol>
+<h4 id="Matching-method"><a href="#Matching-method" class="headerlink" title="Matching method"></a>Matching method</h4><ol>
+<li>对unique strings和duplicated strings区分对待。当binary与一个component的matched unique strings 和 matched duplicated strings 占比分别达到某个threshold时（会有两个thresholds），认为该component是有效的。</li>
+<li>（原文）After matching repos list is generated, we apply a post-process which deletes repos with low matching rate. From the last one in the matching list, we check one by one from back to front. If the majority of matched strings of a repo can be included in repos with higher matching rate, we think this repo is false positive as a result of strings duplication. Finally, we only show matching results with high matching ratio and high absolute matching quantity.</li>
+</ol>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>可以了解一些Third-party component detection的背景知识，例如它在software security, commercial profit, software maintenance, and copyright protection这些方面的作用；</li>
+<li>可以了解下作者对组件间相似问题的定义和解决方案。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" data-id="ckf0pqohy0000sjgu2mn66qb3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Locate-callbacks-in-iOS-apps-Helper-objects" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/" class="article-date">
+  <time datetime="2020-09-12T06:42:25.000Z" itemprop="datePublished">2020-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/">Locate callbacks in iOS apps (Helper objects)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="定位通过Helper-objects实现的callbacks"><a href="#定位通过Helper-objects实现的callbacks" class="headerlink" title="定位通过Helper objects实现的callbacks"></a>定位通过Helper objects实现的callbacks</h2><h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><p>我们首先看一下Helper objects的概念。</p>
+<blockquote>
+<p>In <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Object-oriented_programming">object-oriented programming</a>, a <strong>helper class</strong> is used to assist in providing some functionality, which isn’t the main goal of the application or class in which it is used[*<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Citation_needed">citation needed</a>*]. An instance of a helper class is called a <strong>helper object</strong> (for example, in the <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Delegation_pattern">delegation pattern</a>).</p>
+<p>– the wikipedia of Helper class</p>
+</blockquote>
+<blockquote>
+<p>In delegation, an object handles a request by delegating to a second object (the delegate). The delegate is a helper object, but with the original context. With language-level support for delegation, this is done implicitly by having self in the delegate refer to the original (sending) object, not the delegate (receiving object). In the delegate pattern, this is instead accomplished by explicitly passing the original object to the delegate, as an argument to a method.[1] </p>
+<p>– the wikipedia of Delegation pattern</p>
+</blockquote>
+<p>根据前面的描述，helper objects是实现callback的方法之一，即我们能够借助helper objects来实现对事件的响应。为了有更直观的感受，我们在Apple Developer Documentation中搜索delegate获得一些实际的案例。</p>
+<h4 id="UIApplicationDelegate"><a href="#UIApplicationDelegate" class="headerlink" title="UIApplicationDelegate"></a>UIApplicationDelegate</h4><blockquote>
+<p>Every app must have an app delegate object to respond to app-related messages. For example, the app notifies its delegate when the app finishes launching and when its foreground or background execution status changes. Similarly, app-related messages coming from the system are often routed to the app delegate for handling. Xcode provides an initial app delegate for every app and you should not need to change this delegate later.</p>
+<p>The delegate must adopt the <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate?language=objc"><code>UIApplicationDelegate</code></a> formal protocol.</p>
+<p>– the delegate(instance property) of the app object, Apple Developer Documentation <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiapplication/1622936-delegate?language=objc">🔗</a></p>
+</blockquote>
+<p>具体来说，开发者需要实现一个遵循<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate?language=objc"><code>UIApplicationDelegate</code></a>协议的delegate来处理应用生命周期相关的事件。</p>
+<h4 id="UIScrollViewDelegate"><a href="#UIScrollViewDelegate" class="headerlink" title="UIScrollViewDelegate"></a>UIScrollViewDelegate</h4><blockquote>
+<p>The methods declared by the <code>UIScrollViewDelegate</code> protocol allow the adopting delegate to respond to messages from the <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiscrollview?language=occ"><code>UIScrollView</code></a> class and thus respond to, and in some affect, operations such as scrolling, zooming, deceleration of scrolled content, and scrolling animations.</p>
+<p>– the Apple Developer Documentation of UIScrollViewDelegate protocol <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uiscrollviewdelegate?language=occ">🔗</a></p>
+</blockquote>
+<h4 id="UITableViewDelegate"><a href="#UITableViewDelegate" class="headerlink" title="UITableViewDelegate"></a>UITableViewDelegate</h4><blockquote>
+<p>Use the methods of this protocol to manage the following features:</p>
+<ul>
+<li>Create and manage custom header and footer views.</li>
+<li>Specify custom heights for rows, headers, and footers.</li>
+<li>Provide height estimates for better scrolling support.</li>
+<li>Indent row content.</li>
+<li>Respond to row selections.</li>
+<li>Respond to swipes and other actions in table rows.</li>
+<li>Support editing the table’s content.</li>
+</ul>
+<p>– the Apple Developer Documentation of UITableViewDelegate protocol <a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uitableviewdelegate?language=occ">🔗</a></p>
+</blockquote>
+<p>默认情况下，所有的UITableViewController都会遵循该协议。开发者可以实现一个UITableViewController，并自行定义相关事件发生时的响应操作，例如在“<a target="_blank" rel="noopener" href="https://developer.apple.com/documentation/uikit/uitableviewdelegate/1614943-tableview?language=occ"><code>- tableView:willSelectRowAtIndexPath:</code></a>”方法中实现当表格的某一行被选中时应做如何处理。</p>
+<h3 id="确定目标"><a href="#确定目标" class="headerlink" title="确定目标"></a>确定目标</h3><p>在iOS应用中，delegation是通过protocol实现的。而protocol的定义者通常可以分为两类，一类是Cocoa Frameworks，例如我们前面给的3个例子；另一类则是开发者，例如<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/376ba5343097">blog</a>中给的例子。从逆向的角度来看，它们的差别主要有两个：</p>
+<ol>
+<li>Cocoa Frameworks定义的protocol通常有资料可查，因为它本来提供给广大开发者使用的。我们明确地知道，每一个protocol method是用来处理什么事件的。而开发者自行定义的protocol，通常并不是“流传甚广”的信息，即使是第三方库中开放的protocol，也不如前者来得广泛。</li>
+<li>callback的调用者位置不一样。对前者，callback的调用者通常不在app的可执行文件中，而在运行时链接的动态链接库中；对后者，callback的调用者通常在app的可执行文件中，即“调用delegate的method”这一行代码是开发者写在了应用中的。因此，当我们在构造应用的call graph时，第一类callback通常是作为图的entry point，而后者则是普通的、具有caller的节点。某种意义上，也可以理解为它们处理的事件类型不一样，前者处理系统事件，后者处理自定义事件。</li>
+</ol>
+<h3 id="定位方法"><a href="#定位方法" class="headerlink" title="定位方法"></a>定位方法</h3><p>大致有两种方案：</p>
+<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/" data-id="ckezb0ymy0000itgugiw203gm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Locate-callbacks-in-iOS-apps-Intro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/" class="article-date">
+  <time datetime="2020-09-12T06:41:56.000Z" itemprop="datePublished">2020-09-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/">Locate callbacks in iOS apps (Intro)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><h2 id="什么是callbacks"><a href="#什么是callbacks" class="headerlink" title="什么是callbacks"></a>什么是callbacks</h2><blockquote>
+<p>In <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Computer_programming">computer programming</a>, a <strong>callback</strong>, also known as a “<strong>call-after</strong>“[<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Callback_(computer_programming)#cite_note-1">1]</a> <strong>function</strong>, is any <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Executable_code">executable code</a> that is passed as an <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Argument_(computer_science)">argument</a> to other code; that other code is expected to <em>call back</em> (execute) the argument at a given time. This execution may be immediate as in a <strong>synchronous callback</strong>, or it might happen at a later time as in an <strong>asynchronous callback</strong>. <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Programming_languages">Programming languages</a> support callbacks in different ways, often implementing them with <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Subroutines">subroutines</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lambda_(programming)">lambda expressions</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Block_(programming)">blocks</a>, or <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Function_pointers">function pointers</a>.</p>
+<p>–wikipedia</p>
+</blockquote>
+<p>以上是callback的广泛概念，以及常见的实现方式。当落实到iOS应用中，根据该<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/376ba5343097">blog</a>的总结，callbacks是用来响应事件的，且有4种具体的实现途径：</p>
+<ol>
+<li>Target-action/目标-动作对；</li>
+<li>Helper objects/辅助对象；</li>
+<li>Notifications/通告；</li>
+<li>Blocks。</li>
+</ol>
+<h2 id="为什么要定位callbacks"><a href="#为什么要定位callbacks" class="headerlink" title="为什么要定位callbacks"></a>为什么要定位callbacks</h2><p>作为应用逻辑的突破口，便于开展分析。</p>
+<p>iOS应用在使用过程中，大多数时间是事件驱动的。从callback开始分析：</p>
+<ol>
+<li>可以确定应用是否实现了某些功能（或者说，是否会响应某些事件）；</li>
+<li>更容易得到完整的事件响应链，便于梳理逻辑；</li>
+<li>从二进制分析的角度，更容易得到完善的call graph。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/" data-id="ckezb0yn20001itgu6dsrdorq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/08/hello-world/" class="article-date">
@@ -142,6 +353,18 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/">Locate callbacks in iOS apps (Helper objects)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/">Locate callbacks in iOS apps (Intro)</a>
+          </li>
         
           <li>
             <a href="/2020/09/08/hello-world/">Hello World</a>
