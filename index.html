@@ -64,6 +64,62 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-阅读-论文-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/" class="article-date">
+  <time datetime="2020-09-14T04:04:37.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/">[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BibTeX:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;tang2020libdx,</span><br><span class="line">  title=&#123;LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code&#125;,</span><br><span class="line">  author=&#123;Tang, Wei and Luo, Ping and Fu, Jialiang and Zhang, Dan&#125;,</span><br><span class="line">  booktitle=&#123;2020 IEEE 27th International Conference on Software Analysis, Evolution and Reengineering (SANER)&#125;,</span><br><span class="line">  pages=&#123;104--115&#125;,</span><br><span class="line">  year=&#123;2020&#125;,</span><br><span class="line">  organization=&#123;IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是BCFinder的姊妹篇，或者说是进阶篇。</p>
+<h2 id="阅读笔记"><a href="#阅读笔记" class="headerlink" title="阅读笔记"></a>阅读笔记</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><h4 id="背景和问题"><a href="#背景和问题" class="headerlink" title="背景和问题"></a>背景和问题</h4><ol>
+<li>开源盛行，第三方库使用频繁；</li>
+<li>第三方库误用带来的风险：license violation and security vulnerability；</li>
+<li>识别C和C++开发的第三方库的挑战：编译过程隐藏了大多数的代码特征，且不同的编译过程对最终形成的binary影响很大。</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>提出了LibDX，可以从binaries中检测出重用的第三方库；</li>
+<li>提取的特征能够克服compilation diversity，因此LibDX具有platform-independent属性；</li>
+<li>提出了一种处理feature duplication的方法：（原文）LibDX novelly introduces the logic feature block concept which is applied to deal with the feature duplication challenge in a large-scale feature database.</li>
+</ol>
+<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><ol>
+<li>测试集：覆盖多个平台，9.5K packages including 25.8K C/C++ binary files；</li>
+<li>precision： 92%， recall： 97%；</li>
+<li>使用封闭源商业应用程序验证了LibDX的性能，并发现了一些违反许可证的情况。</li>
+</ol>
+<h3 id="内容（个人偏向）"><a href="#内容（个人偏向）" class="headerlink" title="内容（个人偏向）"></a>内容（个人偏向）</h3><h4 id="challenges"><a href="#challenges" class="headerlink" title="challenges"></a>challenges</h4><h5 id="file-format"><a href="#file-format" class="headerlink" title="file format"></a>file format</h5><h5 id="feature-duplication"><a href="#feature-duplication" class="headerlink" title="feature duplication"></a>feature duplication</h5><p>与BCFinder中的内容基本一致，但是重新定义为了Duplication with Code Clone和Duplication without Code Clone这两类。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/" data-id="ckf2r18pv0000d1gufgiqhf6s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-阅读-论文-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" class="article-date">
@@ -206,8 +262,16 @@
 <li>Cocoa Frameworks定义的protocol通常有资料可查，因为它本来提供给广大开发者使用的。我们明确地知道，每一个protocol method是用来处理什么事件的。而开发者自行定义的protocol，通常并不是“流传甚广”的信息，即使是第三方库中开放的protocol，也不如前者来得广泛。</li>
 <li>callback的调用者位置不一样。对前者，callback的调用者通常不在app的可执行文件中，而在运行时链接的动态链接库中；对后者，callback的调用者通常在app的可执行文件中，即“调用delegate的method”这一行代码是开发者写在了应用中的。因此，当我们在构造应用的call graph时，第一类callback通常是作为图的entry point，而后者则是普通的、具有caller的节点。某种意义上，也可以理解为它们处理的事件类型不一样，前者处理系统事件，后者处理自定义事件。</li>
 </ol>
-<h3 id="定位方法"><a href="#定位方法" class="headerlink" title="定位方法"></a>定位方法</h3><p>大致有两种方案：</p>
-<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4>
+<h3 id="定位方法（基于IDA）"><a href="#定位方法（基于IDA）" class="headerlink" title="定位方法（基于IDA）"></a>定位方法（基于IDA）</h3><p>如果有具体的目标，例如想要定位应用实现的UITableViewDelegate协议的’tableView:didSelectRowAtIndexPath:’方法，或者UICollectionViewDelegate协议的’collectionView:didSelectItemAtIndexPath:’方法，可以直接在Function list中根据selector进行定位，结果大概率是正确的。如果有匹配上的function，可以通过检查它所属的class是否遵守对应的协议来进一步确认。</p>
+<p>如果没有具体目标，可以这么做：</p>
+<ol>
+<li>获得iOS framework headers <a target="_blank" rel="noopener" href="https://github.com/LeoNatan/Apple-Runtime-Headers">🔗</a>；</li>
+<li>解析headers，获得所有protocol的名称；</li>
+<li>检查Mach-O binary中的__objc_protolist段，获得binary中使用到的所有protocols；</li>
+<li>将第三步的结果与第二步的结果取交集，获得当前binary使用到的所有framework protocols；</li>
+<li>对第四步获得的每一个protocol，找到当前binary中实现了它的classes；结合class的名称和protocol定义的method selector，可以推测出如果class实现了该protocol的该method，名字会是什么；最后判断binary中是否存在以该名字命名的method即可。</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
@@ -353,6 +417,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/">[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code</a>
+          </li>
         
           <li>
             <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>

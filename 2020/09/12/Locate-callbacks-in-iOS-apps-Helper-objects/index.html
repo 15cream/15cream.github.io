@@ -15,7 +15,7 @@
 <meta property="og:description" content="定位通过Helper objects实现的callbacks背景知识我们首先看一下Helper objects的概念。  In object-oriented programming, a helper class is used to assist in providing some functionality, which isn’t the main goal of the applicat">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-12T06:42:25.000Z">
-<meta property="article:modified_time" content="2020-09-12T09:38:13.125Z">
+<meta property="article:modified_time" content="2020-09-14T16:35:48.192Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -127,8 +127,16 @@
 <li>Cocoa Frameworks定义的protocol通常有资料可查，因为它本来提供给广大开发者使用的。我们明确地知道，每一个protocol method是用来处理什么事件的。而开发者自行定义的protocol，通常并不是“流传甚广”的信息，即使是第三方库中开放的protocol，也不如前者来得广泛。</li>
 <li>callback的调用者位置不一样。对前者，callback的调用者通常不在app的可执行文件中，而在运行时链接的动态链接库中；对后者，callback的调用者通常在app的可执行文件中，即“调用delegate的method”这一行代码是开发者写在了应用中的。因此，当我们在构造应用的call graph时，第一类callback通常是作为图的entry point，而后者则是普通的、具有caller的节点。某种意义上，也可以理解为它们处理的事件类型不一样，前者处理系统事件，后者处理自定义事件。</li>
 </ol>
-<h3 id="定位方法"><a href="#定位方法" class="headerlink" title="定位方法"></a>定位方法</h3><p>大致有两种方案：</p>
-<h4 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h4>
+<h3 id="定位方法（基于IDA）"><a href="#定位方法（基于IDA）" class="headerlink" title="定位方法（基于IDA）"></a>定位方法（基于IDA）</h3><p>如果有具体的目标，例如想要定位应用实现的UITableViewDelegate协议的’tableView:didSelectRowAtIndexPath:’方法，或者UICollectionViewDelegate协议的’collectionView:didSelectItemAtIndexPath:’方法，可以直接在Function list中根据selector进行定位，结果大概率是正确的。如果有匹配上的function，可以通过检查它所属的class是否遵守对应的协议来进一步确认。</p>
+<p>如果没有具体目标，可以这么做：</p>
+<ol>
+<li>获得iOS framework headers <a target="_blank" rel="noopener" href="https://github.com/LeoNatan/Apple-Runtime-Headers">🔗</a>；</li>
+<li>解析headers，获得所有protocol的名称；</li>
+<li>检查Mach-O binary中的__objc_protolist段，获得binary中使用到的所有protocols；</li>
+<li>将第三步的结果与第二步的结果取交集，获得当前binary使用到的所有framework protocols；</li>
+<li>对第四步获得的每一个protocol，找到当前binary中实现了它的classes；结合class的名称和protocol定义的method selector，可以推测出如果class实现了该protocol的该method，名字会是什么；最后判断binary中是否存在以该名字命名的method即可。</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
@@ -188,6 +196,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/">[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code</a>
+          </li>
         
           <li>
             <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>

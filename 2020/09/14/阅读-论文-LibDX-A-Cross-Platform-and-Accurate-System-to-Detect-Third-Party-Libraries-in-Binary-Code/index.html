@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BibTeX: 12345678@inproceedings&amp;#123;tang2020libdx,  title&#x3D;&amp;#123;LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code&amp;#125;,  author&#x3D;&amp;#123;Tang, Wei and Luo, Ping">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code">
+<meta property="og:url" content="http://example.com/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="BibTeX: 12345678@inproceedings&amp;#123;tang2020libdx,  title&#x3D;&amp;#123;LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code&amp;#125;,  author&#x3D;&amp;#123;Tang, Wei and Luo, Ping">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-09-14T04:04:37.000Z">
+<meta property="article:modified_time" content="2020-09-14T12:10:45.388Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.1.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-阅读-论文-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/" class="article-date">
+  <time datetime="2020-09-14T04:04:37.000Z" itemprop="datePublished">2020-09-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>BibTeX:</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@inproceedings&#123;tang2020libdx,</span><br><span class="line">  title=&#123;LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code&#125;,</span><br><span class="line">  author=&#123;Tang, Wei and Luo, Ping and Fu, Jialiang and Zhang, Dan&#125;,</span><br><span class="line">  booktitle=&#123;2020 IEEE 27th International Conference on Software Analysis, Evolution and Reengineering (SANER)&#125;,</span><br><span class="line">  pages=&#123;104--115&#125;,</span><br><span class="line">  year=&#123;2020&#125;,</span><br><span class="line">  organization=&#123;IEEE&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是BCFinder的姊妹篇，或者说是进阶篇。</p>
+<h2 id="阅读笔记"><a href="#阅读笔记" class="headerlink" title="阅读笔记"></a>阅读笔记</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><h4 id="背景和问题"><a href="#背景和问题" class="headerlink" title="背景和问题"></a>背景和问题</h4><ol>
+<li>开源盛行，第三方库使用频繁；</li>
+<li>第三方库误用带来的风险：license violation and security vulnerability；</li>
+<li>识别C和C++开发的第三方库的挑战：编译过程隐藏了大多数的代码特征，且不同的编译过程对最终形成的binary影响很大。</li>
+</ol>
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><ol>
+<li>提出了LibDX，可以从binaries中检测出重用的第三方库；</li>
+<li>提取的特征能够克服compilation diversity，因此LibDX具有platform-independent属性；</li>
+<li>提出了一种处理feature duplication的方法：（原文）LibDX novelly introduces the logic feature block concept which is applied to deal with the feature duplication challenge in a large-scale feature database.</li>
+</ol>
+<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><ol>
+<li>测试集：覆盖多个平台，9.5K packages including 25.8K C/C++ binary files；</li>
+<li>precision： 92%， recall： 97%；</li>
+<li>使用封闭源商业应用程序验证了LibDX的性能，并发现了一些违反许可证的情况。</li>
+</ol>
+<h3 id="内容（个人偏向）"><a href="#内容（个人偏向）" class="headerlink" title="内容（个人偏向）"></a>内容（个人偏向）</h3><h4 id="challenges"><a href="#challenges" class="headerlink" title="challenges"></a>challenges</h4><h5 id="file-format"><a href="#file-format" class="headerlink" title="file format"></a>file format</h5><h5 id="feature-duplication"><a href="#feature-duplication" class="headerlink" title="feature duplication"></a>feature duplication</h5><p>与BCFinder中的内容基本一致，但是重新定义为了Duplication with Code Clone和Duplication without Code Clone这两类。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/" data-id="ckf2r18pv0000d1gufgiqhf6s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/14/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-LibDX-A-Cross-Platform-and-Accurate-System-to-Detect-Third-Party-Libraries-in-Binary-Code/">[阅读|论文]LibDX: A Cross-Platform and Accurate System to Detect Third-Party Libraries in Binary Code</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/13/%E9%98%85%E8%AF%BB-%E8%AE%BA%E6%96%87-BCFinder-A-Lightweight-and-Platform-Independent-Tool-to-Find-Third-Party-Components-in-Binaries/">[阅读|论文]BCFinder: A Lightweight and Platform-Independent Tool to Find Third-Party Components in Binaries</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Helper-objects/">Locate callbacks in iOS apps (Helper objects)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/12/Locate-callbacks-in-iOS-apps-Intro/">Locate callbacks in iOS apps (Intro)</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/08/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
